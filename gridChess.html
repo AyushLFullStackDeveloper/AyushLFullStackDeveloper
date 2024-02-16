@@ -16,7 +16,7 @@
             background-attachment: fixed;
         }
 
-        .main {
+        .main,header {
             display: grid;
             background-color: aquamarine;
             grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -24,8 +24,38 @@
             height: 700px;
             width: 700px;
             border-style: solid;
-
+            /*  */
+            animation-name: myAnimation;
+            animation-duration: 7s;
+            animation-timing-function: 5s;
+            animation-iteration-count: 3;
         }
+        @keyframes myAnimation {
+            0% {
+
+                transform: translateX(-400px);
+                color: yellow;
+                font-size: 10px;
+            }
+
+            50% {
+
+                color: red;
+                font-size: 30px;
+            }
+
+            75% {
+                color: rgb(11, 7, 6);
+                font-size: 50px;
+            }
+
+            100% {
+
+                color: blue;
+                font-size: 80px;
+            }
+        }
+        /*  */
 
         .white {
             background-color: white;
