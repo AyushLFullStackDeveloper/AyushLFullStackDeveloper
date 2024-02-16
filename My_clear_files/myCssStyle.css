@@ -1,0 +1,52 @@
+table {
+  border-style: groove;
+  border-width: 4px;
+
+}
+
+th,
+td {
+
+  color: aliceblue;
+  padding: 25px;
+  border-style: groove;
+  border-width: 4px;
+
+}
+
+body {
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqFnp98Pbg4o8MYDnGGbXW3DmWEE4FQOYq5Q&usqp=CAU);
+  height: 2000px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 50px;
+  background-attachment: fixed;
+}
+
+.per {
+  color: cadetblue;
+}
+
+.low {
+  color: red;
+}
+
+.top {
+  color: green;
+}
+
+.luc {
+  color: orange;
+}
+
+.st {
+  font-size: large;
+  color: blue;
+}
+
+.cap {
+  font-size: xx-large;
+  font-weight: 900;
+  color: #E36414;
+}
