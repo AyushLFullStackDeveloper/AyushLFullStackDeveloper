@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html>
-
-<head>
+<!-- saved from url=(0058)file:///Users/enjoy_25_ep/Documents/MyhtmlProjects/js.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
     <!-- styling -->
     <style>
         /* main */
@@ -12,7 +11,7 @@
         }
 
         /* submit */
-        .submit {
+        #submit {
             width: 150px;
             height: 60px;
             background-color: yellow;
@@ -28,22 +27,12 @@
     <!-- script -->
     <script>
         function displayFunction(shagunOne, shagunTwo) {
-            let collectedvalue = add(shagunOne, shagunTwo);
-            document.getElementById("display").innerHTML =
-                "The total amount of shagun is:" + collectedvalue;
+            let collectedvalue = add()
+            document.getElementById("display").innerHTML = "The total amount is:" + collectedvalue;
         }
-        function add(numberOne, numberTwo) {
-            let total = numberOne + numberTwo;
-            return total;
-        }
-
         function clearFunction() {
             document.getElementById("display").innerHTML = "";
         }
-
-        function add()
-        let firstNO
-
     </script>
 </head>
 
@@ -51,13 +40,11 @@
     <!-- main division -->
     <div class="main">
         <!-- heading -->
-        <h1 id="display"></h1>
-        <button class="submit" onclick="displayFunction(1000,1000)">
-            CLICK HERE
-        </button>
+        <h1 id="display">I AM OFF</h1>
+        <button id="submit" onclick="displayFunction(&#39;watch&#39;,501)">ON</button>
 
-        <button class="submit" onclick="clearFunction()">CLEAR</button>
+        <button id="submit" onclick="clearFunction()">CLEAR</button>
     </div>
-</body>
 
-</html>
+
+</body></html>
