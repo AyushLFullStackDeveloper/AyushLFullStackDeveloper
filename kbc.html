@@ -327,7 +327,7 @@
             // eightth question
             {
                 question: "8.उस धनुष का क्या नाम था जिसका उपयोग भगवान राम ने देवी सीता स्वयंवर में उनसे विवाह करने के लिए किया था?",
-                answers: ["A.पिनाका", "B. पिंडका", "C. आनंदका", "D. रूलापाण्ड"],
+                answers: ["A.शिवधनुष", "B. पिंडका", "C. आनंदका", "D. रूलापाण्ड"],
                 correct: 1
             },
             // nineth question
@@ -366,8 +366,10 @@
                 if (questions[currentQuestionIndex].correct === givenAnswer) {
                     document.getElementById("text-display").innerHTML = "सही जवाब";
                     document.getElementById("text-display").style.color = "green";
+                    let audio = new Audio("sahi.mp3")
+                    audio.play();
                     currentQuestionIndex++;
-                    let audio = new Audio(".mp3")
+
                     if (currentQuestionIndex < questions.length) {
                         setTimeout(displayQuestion, 3000);
                     } else {
@@ -376,6 +378,8 @@
                 } else {
                     document.getElementById("text-display").innerHTML = "गलत जवाब.";
                     document.getElementById("text-display").style.color = "red";
+                    let audio = new Audio("Galat.mp3")
+                    audio.play();
                     currentQuestionIndex = 0;
                     setTimeout(displayQuestion, 3000);
                 }
