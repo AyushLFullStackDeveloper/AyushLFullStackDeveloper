@@ -26,10 +26,10 @@
 }
 
 .body {
-    background-color: rgb(17, 60, 44);
+    background-color:grey;
     page-break-inside: auto;
     border: 7px;
-
+    
 }
 
 .text {
@@ -64,18 +64,22 @@
     border-color: rgb(123, 61, 61);
 }
 
-page {
+page{
     background-color: rgb(222, 241, 242);
     display: block;
     margin: 0 auto;
     margin-bottom: 0.5cm;
     position: relative;
     border-width: 3px;
-    border-style: dotted;
+
     padding-left: 20px;
     padding-right: 20px;
     width: 19cm;
     height: 42cm;
+   box-shadow:  top 20px bottom 20px left 20px right 20px  grey;
+    
+    
+
 }
 
 html {
