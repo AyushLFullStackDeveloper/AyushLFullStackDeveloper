@@ -15,7 +15,7 @@
 }
 
 .three {
-    text-align: right;
+margin-left: 70%;
 }
 
 .four {
@@ -26,10 +26,10 @@
 }
 
 .body {
-    background-color:grey;
+    background-color: grey;
     page-break-inside: auto;
     border: 7px;
-    
+
 }
 
 .text {
@@ -64,7 +64,7 @@
     border-color: rgb(123, 61, 61);
 }
 
-page{
+page {
     background-color: rgb(222, 241, 242);
     display: block;
     margin: 0 auto;
@@ -76,9 +76,9 @@ page{
     padding-right: 20px;
     width: 19cm;
     height: 42cm;
-   box-shadow:  top 20px bottom 20px left 20px right 20px  grey;
-    
-    
+    box-shadow: top 20px bottom 20px left 20px right 20px grey;
+
+
 
 }
 
