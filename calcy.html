@@ -26,11 +26,15 @@
 
     .display {
       width: calc(100% - 24px);
-      height: 60px;
+      height: 50px;
       padding: 10px;
-      font-size: 24px;
+      font-size: 15px;
       margin-bottom: 10px;
+      background-color: wheat;
+ 
     }
+
+
 
     .buttons,
     .operators-container {
@@ -79,7 +83,9 @@
 
 <body>
   <div class="calculator">
-    <input type="text" class="display" id="display" disabled>
+    <div class="display">
+      <h1 id="display" class="display-show"></h1>
+    </div>
     <div class="buttons">
 
       <button class="clear" onclick="clearFunction()">A/C</button>
@@ -87,26 +93,26 @@
           <button style="background-color: rgb(226, 173, 36);" onclick="per()">%</button>
           <button style="background-color: rgb(226, 173, 36);" onclick="division()">/</button>
 
-          <button onclick="appendToDisplay('9')">9</button>
-          <button onclick="appendToDisplay('8')">8</button>
-          <button onclick="appendToDisplay('7')">7</button>
-   
+          <button onclick="appendToDisplay(9)">9</button>
+          <button onclick="appendToDisplay(8)">8</button>
+          <button onclick="appendToDisplay(7)">7</button>
+
           <button onclick="add()" style="background-color: rgb(226, 173, 36);">+</button>
 
-          <button onclick="appendToDisplay('6')">6</button>
-          <button onclick="appendToDisplay('5')">5</button>
-          <button onclick="appendToDisplay('4')">4</button>
+          <button onclick="appendToDisplay(6)">6</button>
+          <button onclick="appendToDisplay(5)">5</button>
+          <button onclick="appendToDisplay(4)">4</button>
 
           <button onclick="sub()" style="background-color: rgb(226, 173, 36);">-</button>
 
-          <button onclick="appendToDisplay('3')">3</button>
-          <button onclick="appendToDisplay('2')">2</button>
-          <button onclick="appendToDisplay('1')">1</button>
+          <button onclick="appendToDisplay(3)">3</button>
+          <button onclick="appendToDisplay(2)">2</button>
+          <button onclick="appendToDisplay(1)">1</button>
 
           <button onclick="multiply()" style="background-color: rgb(226, 173, 36);">x</button>
     </div>
-    <button onclick="appendToDisplay('0')" style="width: 60px; margin-top: 10px;">0</button>
-    <button onclick="appendToDisplay('00')" style="width: 60px; margin-left: 8px;">00</button>
+    <button onclick="appendToDisplay(0)" style="width: 60px; margin-top: 10px;">0</button>
+    <button onclick="appendToDisplay(00)" style="width: 60px; margin-left: 8px;">00</button>
     <button onclick="showresult()"
       style="width: 130px; margin-top: 10px; margin-left: 8px; background-color: rgb(194, 192, 192);">=</button>
 
@@ -114,62 +120,11 @@
   </div>
 
 
-
   <script>
-    let total = 0;
-    let displayString = "";
-    let action = 0;
-
-    function showresult() {
-      if (action == 1) {
-        total = total + Number(displayString);
-      } else if (action == 2) {
-        total = total % Number(displayString);
-      } else if (action == 3) {
-        total = total / Number(displayString);
-      } else if (action == 4) {
-        total = total - Number(displayString);
-      } else if (action == 5) {
-        total = total * Number(displayString);
-      }
-      displayString = total;
-      document.getElementById("display").value = displayString;
+    function appendToDisplay(ayush) {
+      document.getElementById("display").innerHTML = ayush;
     }
 
-    function clearFunction() {
-      total = 0;
-      displayString = "";
-      document.getElementById("display").value = "";
-    }
-
-    function appendToDisplay(passnumber) {
-      displayString += passnumber;
-      document.getElementById("display").value = displayString;
-    }
-
-    function add() {
-      total = Number(displayString);
-      displayString = "";
-      action = 1;
-    }
-
-    function division() {
-      total = Number(displayString);
-      displayString = "";
-      action = 3;
-    }
-
-    function sub() {
-      total = Number(displayString);
-      displayString = "";
-      action = 4;
-    }
-
-    function multiply() {
-      total = Number(displayString);
-      displayString = "";
-      action = 5;
-    }
   </script>
 </body>
 
