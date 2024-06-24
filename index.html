@@ -4,310 +4,836 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Ayush's Portfolio</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <title>Portfolio</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="icon" type="x/icon" href="https://cdn.freebiesupply.com/logos/large/2x/a-logo-black-and-white.png">
     <style>
-        /* Your CSS styles here */
-        body {
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        /* / Global reset and basic styling / */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #bfc0c2;
-            color: #333;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
         }
 
-        .container {
-            max-width: 100%;
-
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        /* 
+/ Smooth scrolling for the entire page / */
+        html {
+            scroll-behavior: smooth;
         }
 
-        .profile {
-            text-align: center;
-            margin-bottom: 30px;
+        /* / Body styles / */
+        body {
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            /* / Background image or video styles /
+            / Example: background: url('../watermarked_preview.mp4') no-repeat center fixed; / */
         }
 
-        .profile img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        /* / Video container styles / */
+        #myVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
         }
 
-        .profile h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-            color: #007bff;
+        /* / Header container styles / */
+        .header-container {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            background-color: rgba(8, 27, 0, 0.204);
+            /* / Adjust header background color and opacity / */
         }
 
-        .profile p {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: #666;
-        }
-
-        .links,
-        .additional-links {
+        /* / Header styles / */
+        .header {
+            width: 100%;
+            padding: 20px 10%;
+            background: transparent;
             display: flex;
-            flex-wrap: wrap;
-            /* Allow wrapping if needed */
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* Adjusting button styles */
-        .links button,
-        .links a,
-        .additional-links a {
-            text-decoration: none;
+        /* / Logo styles / */
+        .logo {
+            font-size: 25px;
             color: #fff;
-            font-size: 16px;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 5px;
-            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* / Menu icon styles / */
+        #menu-icon {
+            font-size: 2.4rem;
+            color: #fff;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* / Menu icon lines styles / */
+        .menu-icon-line {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        /* / Navbar container styles / */
+        .navbar {
             display: flex;
             align-items: center;
-            background-color: #007bff;
-            cursor: pointer;
-            height: 50px;
-            /* Fixed height for buttons */
         }
 
-        .links button:hover,
-        .links a:hover,
-        .additional-links a:hover {
-            background-color: #0056b3;
-            /* Darker shade on hover */
+        /* / Navbar link styles / */
+        .navbar a {
+            position: relative;
+            font-family: "Poppins", sans-serif;
+            font-size: 18px;
+            color: #090202;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 20px;
+            transition: color 0.3s;
+            padding: 0 10px;
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        /* / Navbar link underline styles / */
+        .navbar a:after {
+            content: "";
+            position: absolute;
+            background-color: transparent;
+            height: 3px;
+            width: 100%;
+            left: 0;
+            bottom: -3px;
+            transition: width 0.3s, background-color 0.3s;
+        }
+
+        /* / Expand navbar link underline on hover / */
+        .navbar a:hover:after {
+            width: 100%;
+            background-color: #ff3c78;
+        }
+
+        /* / Change text color on navbar link hover / */
+        .navbar a:hover {
+            color: rgba(202, 30, 21, 0.957);
+        }
+
+        /* / Media query for screens up to 1024px (tablets and smaller screens) / */
+        @media (max-width: 1024px) {
+
+            /* / Adjust padding in the header for smaller screens / */
+            .header {
+                padding: 20px;
+            }
+
+            /* / Navbar styles for smaller screens / */
+            .navbar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 25vh;
+                background-color: rgba(192, 192, 192, 0.089);
+                color: white;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                font-size: xx-large;
+                z-index: 99;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+                display: none;
+            }
+
+            /* / Show navbar when active / */
+            .navbar.active {
+                transform: translateX(0%);
+                display: flex;
+            }
+
+            /* / Show menu icon on smaller screens / */
+            #menu-icon {
+                display: block;
+            }
+        }
+
+        /* / Media query for screens up to 768px (mobile devices) / */
+        /* Media query for screens up to 768px (mobile devices) */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px;
+            }
+
+            .navbar {
+                height: auto;
+                width: 100%;
+                background-color: rgba(192, 192, 192, 0.363);
+                flex-direction: column;
+                justify-content: center;
+                padding: 20px 0;
+                font-size: xx-large;
+            }
+
+            .navbar a {
+                margin: 10px 0;
+            }
+
+            .home {
+                padding: 50px 5% 0;
+            }
+
+            .home-content {
+                flex-direction: column-reverse;
+                align-items: center;
+                text-align: center;
+            }
+
+            .home-text {
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            .home-img {
+                width: 72vw;
+                margin-bottom: 20px;
+            }
+
+            .About {
+                padding: 50px 5%;
+            }
+
+            .about-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-img {
+                width: 70vw;
+                height: 40vh;
+                margin-bottom: 20px;
+            }
+
+            .about-text {
+                text-align: center;
+            }
+
+            .Portfolio-content {
+                flex-direction: column;
+                align-items: center;
+                padding: 50px 5%;
+            }
+
+            .portfolio-item {
+                width: 100%;
+                margin-top: 30px;
+            }
+
+            .Contact {
+                padding: 50px 5%;
+            }
+
+            .contact-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-box {
+                margin-bottom: 20px;
+                text-align: center;
+            }
+        }
+
+        /* / Additional media queries can be added here for other screen sizes /
+
+/ Home section styles / */
+        .home {
+            display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
+            padding: 70px 10% 0;
+            overflow: hidden;
+        }
+
+        .home-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .home-text {
+            flex: 1;
+            padding-right: 30px;
+        }
+
+        .home-text h3 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .home-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .home-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
             margin-bottom: 30px;
         }
 
-        .gallery a {
+        .home-img {
+            flex: 0 0 40%;
+            max-width: 30%;
+        }
+
+        .home-img img {
+            width: 40vw;
+            height: 70vh;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .btn-box {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
             text-decoration: none;
-            color: #333;
-            background-color: #fff;
-            padding: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-box:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 991px) {
+            .home {
+                padding: 70px 5%;
+            }
+
+            .home-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .home-text {
+                padding-right: 0;
+                margin-top: 30px;
+            }
+
+            .home-img {
+                flex: 0 0 100%;
+                max-width: 100vw;
+                margin-bottom: 30px;
+            }
+
+            .home-img img {
+                width: 59vw;
+                height: 35vh;
+                transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .home {
+                padding: 50px 5%;
+            }
+
+            .home-text h3 {
+                font-size: 1.5rem;
+            }
+
+            .home-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .home-text p {
+                font-size: 1rem;
+            }
+
+            .home-img {
+                flex: 0 0 80%;
+                max-width: 80%;
+                margin: 0 auto 30px;
+            }
+
+            .btn-box {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .home-text h1 {
+                font-size: 2rem;
+            }
+
+            .home-img {
+                max-width: 80%;
+                margin: 0 auto 30px;
+            }
+        }
+
+        /* / About section styles / */
+        .About {
+            padding: 100px 10%;
+            background-color: #f8f9fa3a;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-img {
+            flex: 0 0 45%;
+            max-width: 35%;
+        }
+
+        .about-img img {
+            width: 30vw;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .about-img img:hover {
+            transform: scale(1.05);
+        }
+
+        .about-text {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .about-text .btn-box {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .about-text .btn-box:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 991px) {
+            .About {
+                padding: 70px 5%;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-img,
+            .about-text {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+            .about-img {
+                margin-bottom: 30px;
+            }
+
+            .about-text {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .About {
+                padding: 50px 5%;
+            }
+
+            .about-text h2 {
+                font-size: 2rem;
+            }
+
+            .about-text p {
+                font-size: 1rem;
+            }
+
+            .about-text .btn-box {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .about-img {
+                max-width: 80%;
+                margin: 0 auto 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .About {
+                padding: 40px 5%;
+            }
+
+            .about-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .about-img {
+                max-width: 100%;
+            }
+
+            .about-text p {
+                font-size: 0.9rem;
+            }
+
+            .about-text .btn-box {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Portfolio section styles */
+        .Portfolio-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            padding: 100px 10%;
+            gap: 20px;
+            /* Adjust the gap between columns */
+        }
+
+        /* Portfolio item styles */
+        .Portfolio-content div {
+            flex: 1 1 calc(33.333% - 40px);
+            /* Adjust the width and spacing of columns */
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             align-items: center;
+            border-radius: 10px;
+            border: 2px solid #fff;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 60px;
         }
 
-        .gallery a img {
+        /* Portfolio item hover styles */
+        .Portfolio-content div:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Portfolio heading styles */
+        .Portfolio-content h2 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Portfolio paragraph styles */
+        .Portfolio-content p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* Portfolio button styles */
+        .Portfolio-content button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: rgba(0, 234, 255, 0.681);
+            color: #081b00;
+            border: 2px solid rgb(0, 30, 255);
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+        }
+
+        /* Portfolio button hover styles */
+        .Portfolio-content button:hover {
+            background-color: #081b0013;
+            color: rgba(255, 153, 0, 0.72);
+        }
+
+        /* Portfolio button active styles */
+        .Portfolio-content button:active {
+            transform: translateY(1px);
+        }
+
+        /* Contact section styles */
+        .contact-card {
+            background-color: #3333334f;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
             width: auto;
-            height: 80px;
-            margin-bottom: 10px;
-            border-radius: 50%;
+
+            margin: 2px auto;
         }
 
-        .gallery a:hover {
-            transform: translateY(-5px);
+        .contact-card h2 {
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .info-item i {
+            color: #ffd700;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .info-item p {
+            margin: 0;
         }
     </style>
-
 </head>
 
 <body>
-    <div class="container">
-        <div class="profile">
-            <img src="https://media.licdn.com/dms/image/D4D03AQFx1EfKdKjqRQ/profile-displayphoto-shrink_200_200/0/1706110859470?e=2147483647&v=beta&t=bPonduEB9HyfnA9HqxbEfvpjADCp4k5e_FLtI2dhVWk"
-                alt="Profile Picture" />
-            <h1>Welcome To My Portfolio</h1>
-            <h2>Ayush Lolusare</h2>
-            <p>Full Stack Developer</p>
-            <div class="links">
-                <a href="Resume.html"> <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseWidthExample" aria-expanded="false"
-                        aria-controls="collapseWidthExample" style="text-decoration: none; color: white;">Resume
-                    </button></a>
-                <a class="btn btn-primary"
-                    href="https://github.com/AyushLFullStackDeveloper/AyushlFullStackDeveloper">Github</a>
-                <a class="btn btn-primary"
-                    href="https://www.linkedin.com/in/ayush-lolusare-a047322a8/?originalSubdomain=in">LinkedIn</a>
-                <!--  -->
-                <p class="d-inline-flex gap-1">
-
-                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Contacts
-                    </button>
-                </p>
-                <div class="collapse" id="collapseExample">
-                    <div class="card card-body">
-                        Skype Name:- live:.cid.1b4f5574594c197c<br />
-                        Email:- ayushlolusare@gmail.com<br />
-                        Contact NO:- 9970954494
-                    </div>
-                </div>
-                <!--  -->
+    <div class="header-container">
+        <div class="header">
+            <a href="#" class="logo">Ayush</a>
+            <div id="menu-icon">
+                <div class="menu-icon-line"></div>
+                <div class="menu-icon-line"></div>
+                <div class="menu-icon-line"></div>
             </div>
-
-            <div class="gallery">
-                <!-- Gallery section -->
-                <!-- Add your gallery content here -->
-                <div class="gallery">
-                    <!-- calculator -->
-                    <a href="./calcy.html">
-                        <img
-                            src="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/512/Calculator-icon.png" />
-                        Calculator
-                    </a>
-                    <!-- form -->
-                    <a href="./formOne.html">
-                        <img src="https://cdn.iconscout.com/icon/free/png-256/free-form-2029103-1713283.png" /> Form
-                        Page
-                    </a>
-                    <!-- flag -->
-                    <a href="./flag.html">
-                        <img src="https://static.vecteezy.com/system/resources/thumbnails/024/661/401/small/national-indian-flag-background-illustration-ai-generative-png.png"
-                            alt="Flag Icon" /> Indian Flag
-                    </a>
-                    <!-- top fevourites -->
-                    <a href="./topThreeFev.html">
-                        <img src="https://etimg.etb2bimg.com/photo/89754030.cms" />
-                        Top Three Favourites
-                    </a>
-                    <!-- grid youtube -->
-                    <a href="./gridyoutube.html">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" /> YouTube Page
-                    </a>
-                    <!-- kbc -->
-                    <a href="kbc.html">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/a/af/Ke_Bani_Crorepati.png" /> KBC Project
-                    </a>
-                    <!-- box layout -->
-                    <a href="./box.html">
-                        <img src="https://seeklogo.com/images/I/instagram-layout-logo-DAF3C7F533-seeklogo.com.png" />
-                        Box (
-                        USING FLEX )
-                    </a>
-                    <!-- calender -->
-                    <a href="./calender.html">
-                        <img src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678116-calendar-512.png" />
-                        Calendar
-                    </a>
-                    <!-- chess -->
-                    <a href="./chess.html">
-                        <img src="https://parspng.com/wp-content/uploads/2022/11/chesspng.parspng.com-10.png" />
-                        Chess ( USING GRID )
-                    </a>
-                    <!-- flex -->
-                    <a href="./newFlex.html">
-                        <img src="https://www.logo.wine/a/logo/Flex_(company)/Flex_(company)-Logo.wine.svg" /> Flex
-                        Project
-                    </a>
-                    <!-- keyboard -->
-                    <a href="./keycopy.html">
-                        <img src="https://pngimg.com/uploads/keyboard/keyboard_PNG101839.png" /> Keyboard
-                    </a>
-                    <!-- grid chess -->
-                    <a href="./gridChess.html">
-                        <img
-                            src="https://static.vecteezy.com/system/resources/thumbnails/018/871/720/small_2x/king-and-soldier-chess-pieces-on-transparent-background-leadership-concept-png.png" />
-                        Chess ( USING FLEX )
-                    </a>
-                    <!-- table youtube -->
-                    <a href="./tableYoutube.html">
-                        <img src="https://static-00.iconduck.com/assets.00/youtube-icon-1024x1024-t3zo1lo4.png" />
-                        YouTube
-                        ( USING TABLE )
-                    </a>
-                    <!-- calculation -->
-                    <a href="./calculation.html">
-                        <img src="https://cdn-icons-png.flaticon.com/512/201/201558.png" />First Calculation Program
-                    </a>
-                    <!-- eligible or not -->
-                    <a href="./eligible.html">
-                        <img
-                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Symbol_keep_vote.svg/1200px-Symbol_keep_vote.svg.png" />
-                        Eligible Or Not Program
-                    </a>
-                    <!-- shagun js -->
-                    <a href="./shagunJS.html">
-                        <img src="https://i.pinimg.com/originals/8d/b7/c8/8db7c8306e3fd47511343a9d8c3d45f5.png" /> My
-                        Fiest
-                        Js
-                        Program
-                    </a>
-                    <!-- google -->
-                    <a href="./google.html">
-                        <img src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png" />
-                        Google
-                        Page
-                    </a>
-                    <!-- half ticket -->
-                    <a href="./half-full-ticket.html">
-                        <img src="https://www.pngitem.com/pimgs/m/80-802725_ticket-icon-png-transparent-png.png" />
-                        Half / Full Ticket Program
-                    </a>
-                    <!-- even odd -->
-                    <a href="./evenOdd.html">
-                        <img src="https://m.media-amazon.com/images/I/61hFVdt7F0L.png" /> Even / Odd
-                    </a>
-                    <!-- light -->
-                    <a href="./light.html">
-                        <img src="https://cdn-icons-png.flaticon.com/512/7503/7503471.png" /> Electric Bill
-                    </a>
-                    <!-- lottary -->
-                    <a href="./lottary.html">
-                        <img src="https://i.pinimg.com/originals/ba/97/72/ba9772b48e0f8424d087384b6278ddfd.png" />
-                        Lottery Game
-                    </a>
-                    <!-- js programms -->
-                    <a href="./main.html">
-                        <img src="https://www.freepnglogos.com/uploads/javascript/js-circle-black-design-logo-30.png" />
-                        Program made by using all JS.
-                    </a>
-                    <!-- wowels -->
-                    <a href="./wovel.html">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpr0LgJSAWzoWnp25IKoJ1giNsq-KoTFlhjIl7_g_Y1A&s" />
-                        Vowels Program
-                    </a>
-                    <!-- emoji -->
-                    <a href="emoji.html">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV1tVm9gsH7A0QugrS2GptoQcsMPFVGLWtqg&s" />
-                        Emoji ( By Html,Css and Js )
-                    </a>
-                    <!-- student data exercise -->
-                    <a href="formexercize.html">
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg-ggoVd5QvuCUrI2NXmlsPSuWLtCLqtMlHQ&s">
-                        Form Exercise
-                    </a>
-                    <!-- musicplayer -->
-                    <a href="musicplayer.html">
-                        <img
-                            src="https://png.pngtree.com/png-vector/20221001/ourmid/pngtree-music-player-icon-png-image_6248707.png">
-                        Music Player
-                    </a>
-                </div>
+            <div class="navbar">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#Contact">Contact</a>
             </div>
         </div>
-        <!--  -->
+    </div>
 
-        <!--  -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
+    <div class="background-container"></div>
+    <div class="home-section">
+        <section class="home" id="home">
+            <video autoplay muted loop id="myVideo">
+                <source
+                    src="https://videos.pond5.com/smart-city-and-information-technology-footage-118285019_main_xxl.mp4"
+                    type="video/mp4" />
+            </video>
+            <div class="home-content">
+                <div class="home-text">
+                    <h3>Hello, It's Me</h3>
+                    <h1>Ayush Lolusare</h1>
+                    <h3>I'm a <span class="multiple-text"></span></h3>
+                    <p>
+                        I'm passionate about innovative coding solutions that enhance user
+                        experiences. With expertise in full-stack development, I excel in
+                        dynamic environments that demand problem-solving and creativity.
+                    </p>
+                    <a href="#about" class="btn-box">More About Me</a>
+                </div>
+                <div class="home-img">
+                    <img src="./home_image-removebg-preview.png" alt="profile_image" />
+                </div>
+            </div>
+        </section>
+    </div>
+    <section class="About" id="about">
+        <div class="about-content">
+            <div class="about-img">
+                <img src="./about_image-removebg-preview copy.png" alt="About Me Image" />
+            </div>
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>
+                    My journey in programming began with a passion for building
+                    functional solutions from scratch. This drive led me to master
+                    languages like JavaScript, Python, and Java, enabling me to develop
+                    robust, scalable applications across various platforms.
+                </p>
+                <a href="#Contact" class="btn-box">Contact Me</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="Portfolio" id="portfolio">
+        <div class="Portfolio-content">
+            <div class="portfolio-item">
+                <h2>HTML PROJECTS</h2>
+                <p>
+                    This setup creates a comprehensive portfolio website using
+                    <b>HTML, CSS, and JavaScript,</b>
+                    suitable for showcasing work and engaging visitors effectively.
+                </p>
+                <br />
+                <br />
+                <a class="btn-box" href="./htmlProjects.html">Click Here</a>
+            </div>
+            <div class="portfolio-item">
+                <h2>CSS PROJECTS</h2>
+                <p>
+                    Explore my CSS projects that demonstrate various design techniques
+                    and layouts. From responsive design to animations, these projects
+                    showcase my skills in creating visually appealing web pages.
+                </p>
+                <a class="btn-box" href="./cssProjects.html">Click Here</a>
+            </div>
+            <div class="portfolio-item">
+                <h2>JavaScript PROJECTS</h2>
+                <p>
+                    Dive into my JavaScript projects that highlight my ability to create
+                    dynamic and interactive web applications. These projects include
+                    features like form validation, API integration, and more.
+                </p>
+                <a class="btn-box" href="./js_projects.html">Click Here</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="contact-card" id="Contact">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <div class="info-item">
+                <i class="bx bx-current-location"></i>
+                <p>Nagpur, Maharashtra, India</p>
+            </div>
+            <div class="info-item">
+                <i class="bx bxs-phone"></i>
+                <p>+91 997095 4494</p>
+            </div>
+            <div class="info-item">
+                <i class="bx bxl-gmail"></i>
+                <p onclick="copyEmail()">ayushlolusare7@gmail.com</p>
+            </div>
+            <div class="info-item">
+                <i class="bx bxl-github"></i>
+                <a href="https://github.com/AyushLFullStackDeveloper/ayushlolusare-New_projectas" style="color: white;">
+                    <p>Github</p>
+                </a>
+            </div>
+            <div class="info-item">
+                <i class='bx bxl-linkedin'></i>
+                <a href="https://in.linkedin.com/in/ayush-lolusare-a047322a8" style="color: white;">
+                    <p>Linked In</p>
+                </a>
+            </div>
+            <div class="info-item">
+                <i class="bx bxl-skype"></i>
+                <p onclick="copySkype()">Ayush Lolusare</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        // Typed.js Initialization
+        const typed = new Typed(".multiple-text", {
+            strings: [
+                "Web Developer",
+                "Web Designer",
+                "Front-end Developer",
+                "Tester",
+                "Quality Assurance",
+                "Project Manager",
+                "FullStackDeveloper",
+            ],
+            typeSpeed: 70,
+            backSpeed: 70,
+            backDelay: 1000,
+            loop: true,
+        });
+
+        document.getElementById("menu-icon").onclick = function () {
+            document.querySelector(".navbar").classList.toggle("active");
+        };
+
+        // JavaScript to close the navbar when clicking outside
+        document.addEventListener("click", function (event) {
+            var isClickInsideNavbar = document
+                .querySelector(".navbar")
+                .contains(event.target);
+            var isClickInsideMenuIcon = document
+                .querySelector("#menu-icon")
+                .contains(event.target);
+            document.addEventListener("click", function (event) {
+                const isClickInsideNavbar = event.target.closest(".navbar") !== null;
+                const isClickInsideMenuIcon =
+                    event.target.closest("#menu-icon") !== null;
+
+                if (!isClickInsideNavbar && !isClickInsideMenuIcon) {
+                    document.querySelector(".navbar").classList.remove("active");
+                }
+            });
+        });
+
+        // Existing JavaScript for menu icon toggle
+        document.getElementById("menu-icon").onclick = function () {
+            document.querySelector(".navbar").classList.toggle("active");
+        };
+
+        function copyEmail() {
+            const email = "ayushlolusare7@gmail.com";
+            navigator.clipboard
+                .writeText(email)
+                .then(() => {
+                    alert("Email copied to clipboard");
+                })
+                .catch((err) => {
+                    console.error("Failed to copy email: ", err);
+                });
+        }
+        function copySkype() {
+            const email = "Ayush Lolusare";
+            navigator.clipboard
+                .writeText(email)
+                .then(() => {
+                    alert("skype name copied to clipboard");
+                })
+                .catch((err) => {
+                    console.error("Failed to copy email: ", err);
+                });
+        }
+    </script>
 </body>
 
 </html>
